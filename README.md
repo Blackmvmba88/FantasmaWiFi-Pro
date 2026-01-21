@@ -1,42 +1,120 @@
-# 🕸️ Fantasma Wi-Fi Pro
+# 🕸️ FantasmaWiFi-Pro v7.0
 
-> **"Cuando tu señal llega a la Mac, pero muere antes de llegar a tu mano."**
+> **"Interface A consumes internet, Interface B distributes internet"**  
+> *The rest is theater.*
 
-**Fantasma Wi-Fi** es la herramienta definitiva de automatización para macOS que transforma tu computadora en un puente de conectividad de alta potencia. Diseñado específicamente para situaciones donde el Wi-Fi del lugar es débil para dispositivos móviles (teléfonos, iPads, consolas), pero la antena de la Mac aún logra captar señal.
-
----
-
-## 🚀 La Misión
-Cerrar la brecha de conectividad usando el hardware que ya tienes. Si tu Mac tiene internet, tu ecosistema también.
-
-## 🛠️ Modos de Operación (Roadmap)
-
-### Fase 1: El Puente Espectral - *Estado: Completado* ⚡
-- **Anclaje USB (Ultra-Velocidad):** Conecta tu Redmi por cable y recibe internet de la Mac.
-- **Puente Bluetooth (Invisible):** Comparte datos sin cables.
-- **Interfaz "Ghost Snake":** Animación de impacto con serpiente de manzanas rojas.
-
-### Fase 2: El Repetidor Real - *Estado: Operacional* 📡
-- **Dual-Interface Support:** Integración de antenas USB externas.
-- **Control Panel Pro:** Interfaz interactiva con temas Matrix y Queen (Sovereignty Edition).
-
-### Fase 3: Comercialización y Soberanía (Q1 2026) 💰
-- **Venta de Experiencias:** Distribución de scripts con animaciones customizadas.
-- **Auto-Ghost:** Funcionamiento de un solo click sin entrar a menús.
+**FantasmaWiFi-Pro** is a multi-platform network sharing tool that transforms your computer into a powerful WiFi hotspot or network bridge. Born from the need to share weak WiFi signals with mobile devices, it has evolved into a comprehensive cross-platform solution.
 
 ---
 
-## 📖 Logros de Hoy (Speedrun Edition)
+## 🚀 What's New in v7.0
 
-1. [x] **Nacimiento Sobrenatural:** Identificación del problema y creación del concepto.
-2. [x] **Arquitectura de Operador:** Creación de `phantom_operator.sh` con animaciones cinemáticas.
-3. [x] **Motor "Con Webos":** Implementación de la Cobra de Datos y el Bender de Serpiente.
-4. [x] **Legalidad Soberana:** Registro de la licencia de propiedad de Iyari.
+### Multi-Platform Support 🌍
+- ✅ **macOS** - Native Internet Sharing + bridge support
+- ✅ **Linux** - Full hostapd + dnsmasq + iptables/nftables
+- ✅ **Windows** - Hosted Network + ICS
+- ✅ **Termux/Android** - Tethering + iptables (with L3 proxy fallback)
+
+### Dual Operation Modes 🔀
+
+**Hotspot Mode (NAT/Router)**
+- Creates own network with DHCP
+- Perfect for mobile devices, IoT, consoles
+- NAT + stateful firewall
+
+**Bridge Mode (Layer 2)**
+- Transparent network extension
+- Avoids double NAT
+- Enterprise/lab use cases
+
+### Clean Architecture 🏗️
+```
+[Core Fantasma] → [Platform Adapter] → [Driver Layer]
+    Python            mac/linux/win/termux    System Tools
+```
+
+---
+
+## 📦 Quick Start
+
+### Installation
+```bash
+git clone https://github.com/Blackmvmba88/FantasmaWiFi-Pro.git
+cd FantasmaWiFi-Pro
+chmod +x fantasma_cli.py
+```
+
+### Usage
+```bash
+# List interfaces
+./fantasma_cli.py list
+
+# Start hotspot (WiFi)
+./fantasma_cli.py start -s en0 -t wlan1 --ssid MyWiFi --password SecurePass123
+
+# Start bridge mode
+./fantasma_cli.py start -s en0 -t en1 --bridge
+
+# Stop sharing
+./fantasma_cli.py stop
+
+# Check status
+./fantasma_cli.py status
+```
+
+---
+
+## 📚 Documentation
+
+- **[Complete README](README_NEW.md)** - Full documentation with examples
+- **[Architecture Guide](ARCHITECTURE.md)** - Technical deep dive
+- **Legacy Scripts** - Original bash scripts (`phantom_*.sh`) for macOS
+
+---
+
+## 🛠️ Legacy Versions
+
+### Fase 1-2: El Puente Espectral ⚡ (Completed)
+The original macOS-only bash scripts are still available:
+- `phantom_control.sh` - Basic control panel
+- `phantom_operator.sh` - Advanced "AI brain" interface with themes
+
+These scripts provided the foundation for the multi-platform architecture.
+
+### Fase 3: Multi-Platform Architecture 🌐 (v7.0 - Current)
+Complete rewrite in Python with:
+- Cross-platform support (4 platforms)
+- Dual operation modes (Hotspot + Bridge)
+- Clean adapter-based architecture
+- Unified CLI interface
 
 ---
 
 ## 🧙‍♂️ Filosofía de Uso
-Esta herramienta no es solo un ajuste de red; es una declaración de **Soberanía Digital**. No aceptes zonas muertas de Wi-Fi. Crea tu propia infraestructura.
+
+Esta herramienta no es solo un ajuste de red; es una declaración de **Soberanía Digital**. 
+
+*This tool is not just a network script; it's a declaration of **Digital Sovereignty**.*
+
+Don't accept WiFi dead zones. Create your own infrastructure.
 
 ---
-*Desarrollado con ❤️ para el ecosistema de Iyari Cancino Gomez. Versión 5.0 Sovereign.*
+
+## 🗺️ Roadmap
+
+- [x] **Phase 1-2**: macOS bash scripts (Completed)
+- [x] **Phase 3**: Multi-platform architecture (v7.0 - Current)
+- [ ] **Phase 4**: Web UI and advanced features (Q1 2026)
+- [ ] **Phase 5**: Commercialization (Q3 2026)
+
+---
+
+## 📄 License
+
+Licensed under the Sovereignty License - see [LICENSE_SOVEREIGNTY.md](LICENSE_SOVEREIGNTY.md) for details.
+
+**Developed with ❤️ for the ecosystem of Iyari Cancino Gomez**
+
+---
+
+*Version 7.0 "Multi-Platform Edition" - The architecture that aged well in the universe* 🌌

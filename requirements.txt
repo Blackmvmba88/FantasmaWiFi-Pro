@@ -1,0 +1,13 @@
+# FantasmaWiFi-Pro Requirements
+# Python 3.7+
+
+# No external dependencies required for core functionality
+# All platform adapters use system tools
+
+# Optional: For future web UI
+# flask>=2.0.0
+# flask-socketio>=5.0.0
+
+# Optional: For enhanced CLI
+# colorama>=0.4.4  # Better Windows color support
+# rich>=10.0.0     # Rich terminal UI (future enhancement)
