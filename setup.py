@@ -9,9 +9,9 @@ with open("README_NEW.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="fantasmawifi-pro",
-    version="7.0.0",
+    version="7.5.0",
     author="Iyari Cancino Gomez",
-    description="Multi-platform WiFi hotspot and network bridge tool",
+    description="Multi-platform WiFi hotspot and network bridge tool with Web UI",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Blackmvmba88/FantasmaWiFi-Pro",
@@ -34,9 +34,15 @@ setup(
         "Operating System :: Android",
     ],
     python_requires=">=3.7",
+    install_requires=[
+        "flask>=2.0.0",
+        "flask-socketio>=5.0.0",
+        "python-socketio>=5.0.0",
+    ],
     entry_points={
         "console_scripts": [
             "fantasma=fantasma_cli:main",
+            "fantasma-web=fantasma_web:main",
         ],
     },
 )

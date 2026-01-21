@@ -4,9 +4,10 @@
 # No external dependencies required for core functionality
 # All platform adapters use system tools
 
-# Optional: For future web UI
-# flask>=2.0.0
-# flask-socketio>=5.0.0
+# Web UI (Phase 4 - v7.5+)
+flask>=2.0.0
+flask-socketio>=5.0.0
+python-socketio>=5.0.0
 
 # Optional: For enhanced CLI
 # colorama>=0.4.4  # Better Windows color support
