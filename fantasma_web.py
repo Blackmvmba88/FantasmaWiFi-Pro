@@ -268,7 +268,7 @@ def main():
     print("=" * 60)
     
     # Run server
-    socketio.run(app, host=args.host, port=args.port, debug=args.debug, allow_unsafe_werkzeug=True)
+    socketio.run(app, host=args.host, port=args.port, debug=args.debug)
 
 
 if __name__ == '__main__':

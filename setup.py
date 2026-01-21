@@ -35,9 +35,9 @@ setup(
     ],
     python_requires=">=3.7",
     install_requires=[
-        "flask>=2.0.0",
-        "flask-socketio>=5.0.0",
-        "python-socketio>=5.0.0",
+        "flask>=2.3.2",
+        "flask-socketio>=5.3.0",
+        "python-socketio>=5.9.0",
     ],
     entry_points={
         "console_scripts": [

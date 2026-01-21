@@ -235,6 +235,7 @@ async function loadProfiles() {
 
 async function saveCurrentProfile() {
     const formData = new FormData(startForm);
+    // TODO: Replace with custom modal dialog for better UX
     const name = prompt('Enter profile name:');
     
     if (!name) return;
@@ -304,6 +305,7 @@ async function loadProfile(name) {
 }
 
 async function deleteProfile(name) {
+    // TODO: Replace with custom modal dialog for better UX
     if (!confirm(`Delete profile "${name}"?`)) return;
 
     try {
@@ -431,6 +433,7 @@ function formatUptime(seconds) {
 }
 
 function showProfileSelector() {
+    // TODO: Replace with custom modal dialog for better UX
     // Simple implementation - could be enhanced with a modal
     const profiles = Array.from(profilesList.querySelectorAll('.profile-name'))
         .map(el => el.textContent);
