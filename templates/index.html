@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FantasmaWiFi-Pro Control Panel</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="ghost">🕸️</span>
+                <h1>FantasmaWiFi-Pro</h1>
+            </div>
+            <div class="status-badge" id="statusBadge">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Inactive</span>
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard">
+            <!-- Status Card -->
+            <div class="card status-card">
+                <h2>Current Status</h2>
+                <div class="status-info">
+                    <div class="info-row">
+                        <span class="label">Platform:</span>
+                        <span class="value" id="platform">Loading...</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Mode:</span>
+                        <span class="value" id="mode">None</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Source:</span>
+                        <span class="value" id="source">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Target:</span>
+                        <span class="value" id="target">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Uptime:</span>
+                        <span class="value" id="uptime">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Card -->
+            <div class="card control-card">
+                <h2>Start Sharing</h2>
+                <form id="startForm">
+                    <!-- Mode Selection -->
+                    <div class="form-group">
+                        <label for="mode">Operation Mode</label>
+                        <select id="modeSelect" name="mode" required>
+                            <option value="hotspot">Hotspot Mode (NAT/Router)</option>
+                            <option value="bridge">Bridge Mode (Layer 2)</option>
+                        </select>
+                        <small class="help-text" id="modeHelp">
+                            Hotspot creates a new network. Bridge extends existing network.
+                        </small>
+                    </div>
+
+                    <!-- Source Interface -->
+                    <div class="form-group">
+                        <label for="source">Source Interface (Consumes Internet)</label>
+                        <select id="sourceSelect" name="source" required>
+                            <option value="">-- Select Source --</option>
+                        </select>
+                        <small class="help-text">Interface that has internet connection</small>
+                    </div>
+
+                    <!-- Target Interface -->
+                    <div class="form-group">
+                        <label for="target">Target Interface (Distributes Internet)</label>
+                        <select id="targetSelect" name="target" required>
+                            <option value="">-- Select Target --</option>
+                        </select>
+                        <small class="help-text">Interface that will share internet</small>
+                    </div>
+
+                    <!-- Hotspot Settings (shown only for hotspot mode) -->
+                    <div id="hotspotSettings" class="hotspot-settings">
+                        <div class="form-group">
+                            <label for="ssid">Network Name (SSID)</label>
+                            <input type="text" id="ssid" name="ssid" value="FantasmaWiFi" placeholder="FantasmaWiFi">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Minimum 8 characters">
+                            <small class="help-text">Leave empty for open network (not recommended)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="channel">WiFi Channel</label>
+                            <select id="channel" name="channel">
+                                <option value="1">Channel 1</option>
+                                <option value="6" selected>Channel 6</option>
+                                <option value="11">Channel 11</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ipRange">IP Range</label>
+                            <input type="text" id="ipRange" name="ip_range" value="192.168.137.0/24">
+                            <small class="help-text">Subnet for clients (CIDR notation)</small>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary" id="startBtn">
+                            Start Sharing
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="refreshBtn">
+                            Refresh Interfaces
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Stop Button (shown when active) -->
+                <div id="stopSection" class="stop-section" style="display: none;">
+                    <button type="button" class="btn btn-danger" id="stopBtn">
+                        Stop Sharing
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interfaces Card -->
+            <div class="card interfaces-card">
+                <h2>Available Interfaces</h2>
+                <div id="interfacesList" class="interfaces-list">
+                    <p class="loading">Loading interfaces...</p>
+                </div>
+            </div>
+
+            <!-- Profiles Card -->
+            <div class="card profiles-card">
+                <h2>Configuration Profiles</h2>
+                <div class="profiles-actions">
+                    <button type="button" class="btn btn-secondary btn-small" id="saveProfileBtn">
+                        Save Current Config
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-small" id="loadProfileBtn">
+                        Load Profile
+                    </button>
+                </div>
+                <div id="profilesList" class="profiles-list">
+                    <p class="empty-state">No profiles saved yet</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>FantasmaWiFi-Pro v7.5 - Digital Sovereignty Tool</p>
+            <p><small>Interface A consumes internet, Interface B distributes internet</small></p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
