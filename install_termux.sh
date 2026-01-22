@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 # FantasmaWiFi-Pro Termux/Android Installer Script
 # This script installs FantasmaWiFi-Pro and its dependencies on Termux
 

@@ -117,7 +117,7 @@ class FantasmaDoctor:
                         if line.startswith('PRETTY_NAME='):
                             info['distribution'] = line.split('=')[1].strip().strip('"')
                             break
-            except:
+            except (FileNotFoundError, PermissionError, OSError):
                 pass
         
         # Check if running in Termux

@@ -247,11 +247,11 @@ Modes:
             cli.list_interfaces()
         elif args.command == 'doctor':
             # Run doctor diagnostics
-            from fantasma_doctor import FantasmaDoctor
+            from fantasma_doctor import FantasmaDoctor, CheckStatus
             doctor = FantasmaDoctor(verbose=args.verbose, no_color=False)
             report = doctor.generate_report()
             doctor.print_report(report)
-            sys.exit(0 if report.overall_status.name == 'PASS' else 1)
+            sys.exit(0 if report.overall_status == CheckStatus.PASS else 1)
         elif args.command == 'start':
             if not args.source or not args.target:
                 print(f"{cli.RED}Error: --source and --target are required for start command{cli.NC}")

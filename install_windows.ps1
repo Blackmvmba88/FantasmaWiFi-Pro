@@ -62,10 +62,13 @@ function Install-Python {
     Write-Info "Python 3 is required but not found."
     Write-Info "Downloading Python installer..."
     
-    $pythonUrl = "https://www.python.org/ftp/python/3.11.7/python-3.11.7-amd64.exe"
+    # Use a recent stable version - update as needed
+    $pythonVersion = "3.12.1"
+    $pythonUrl = "https://www.python.org/ftp/python/$pythonVersion/python-$pythonVersion-amd64.exe"
     $installerPath = "$env:TEMP\python-installer.exe"
     
     try {
+        Write-Info "Downloading Python $pythonVersion..."
         Invoke-WebRequest -Uri $pythonUrl -OutFile $installerPath
         
         Write-Info "Installing Python..."
@@ -180,7 +183,7 @@ function Test-Installation {
     Write-Info "Running diagnostics..."
     
     try {
-        python -m fantasma_cli doctor
+        python -m fantasma_doctor
         
         Write-Success ""
         Write-Success "✓ Installation complete!"
