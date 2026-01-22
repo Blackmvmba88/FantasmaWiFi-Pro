@@ -45,15 +45,48 @@
 ## 📦 Quick Start
 
 ### Installation
+
+See **[INSTALLATION.md](INSTALLATION.md)** for complete installation instructions for all platforms.
+
+**Quick Install (PyPI):**
+```bash
+# Linux/macOS/Termux
+pip install fantasmawifi-pro
+
+# Windows (run as Administrator)
+pip install fantasmawifi-pro
+```
+
+**Platform-Specific Installers:**
+- **Windows**: Run `install_windows.ps1` (PowerShell as Administrator)
+- **macOS**: Run `./install_macos.sh`
+- **Termux/Android**: Run `./install_termux.sh`
+
+**From Source:**
 ```bash
 git clone https://github.com/Blackmvmba88/FantasmaWiFi-Pro.git
 cd FantasmaWiFi-Pro
 chmod +x fantasma_cli.py start_web_ui.sh
 ```
 
+### System Check
+
+Run diagnostics to verify your system:
+```bash
+fantasma doctor
+```
+
+This will check:
+- Platform compatibility
+- Network interfaces
+- Required dependencies
+- System capabilities
+
 ### Web UI (Recommended for Most Users)
 ```bash
 # Start the web interface
+fantasma-web
+# or from source:
 ./start_web_ui.sh
 
 # Access in your browser
@@ -70,26 +103,31 @@ See [WEB_UI_GUIDE.md](WEB_UI_GUIDE.md) for detailed Web UI documentation.
 
 ### CLI (For Power Users & Automation)
 ```bash
+# Run system diagnostics
+fantasma doctor
+
 # List interfaces
-./fantasma_cli.py list
+fantasma list
 
 # Start hotspot (WiFi)
-./fantasma_cli.py start -s en0 -t wlan1 --ssid MyWiFi --password SecurePass123
+sudo fantasma start -s eth0 -t wlan0 --ssid MyWiFi --password SecurePass123
 
 # Start bridge mode
-./fantasma_cli.py start -s en0 -t en1 --bridge
+sudo fantasma start -s eth0 -t eth1 --bridge
 
 # Stop sharing
-./fantasma_cli.py stop
+sudo fantasma stop
 
 # Check status
-./fantasma_cli.py status
+fantasma status
 ```
 
 ---
 
 ## 📚 Documentation
 
+- **[Installation Guide](INSTALLATION.md)** - Complete installation instructions for all platforms
+- **[Doctor Guide](DOCTOR_GUIDE.md)** - System diagnostics and troubleshooting
 - **[Web UI Guide](WEB_UI_GUIDE.md)** - Complete Web UI documentation
 - **[Complete README](README_NEW.md)** - Full CLI documentation with examples
 - **[Architecture Guide](ARCHITECTURE.md)** - Technical deep dive
