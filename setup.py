@@ -3,13 +3,19 @@ FantasmaWiFi-Pro Setup Script
 """
 
 from setuptools import setup, find_packages
+import os
+
+# Read version from _version.py
+version = {}
+with open("_version.py", "r") as f:
+    exec(f.read(), version)
 
 with open("README_NEW.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
     name="fantasmawifi-pro",
-    version="7.5.0",
+    version=version["__version__"],
     author="Iyari Cancino Gomez",
     description="Multi-platform WiFi hotspot and network bridge tool with Web UI",
     long_description=long_description,

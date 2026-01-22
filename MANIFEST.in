@@ -1,0 +1,25 @@
+# Include documentation
+include README.md
+include README_NEW.md
+include LICENSE_SOVEREIGNTY.md
+include CHANGELOG.md
+include ARCHITECTURE.md
+include WEB_UI_GUIDE.md
+include IMPLEMENTATION_SUMMARY.md
+include PHASE_4_REPORT.md
+include PLATFORM_SUPPORT.md
+
+# Include shell scripts
+include *.sh
+
+# Include templates and static files
+recursive-include templates *.html *.css *.js
+recursive-include static *.css *.js *.png *.jpg *.svg
+
+# Include examples
+recursive-include examples *.py *.md
+
+# Exclude development files
+exclude .gitignore
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
