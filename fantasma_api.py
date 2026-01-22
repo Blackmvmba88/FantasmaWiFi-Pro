@@ -29,6 +29,8 @@ class APIAuth:
     
     def _generate_key(self) -> str:
         """Generate a secure API key"""
+        # Using URL-safe base64 encoding for randomness
+        # Note: prefix helps identify keys but is not security-critical
         return f"fwp_{secrets.token_urlsafe(32)}"
     
     def create_key(self, name: str) -> str:

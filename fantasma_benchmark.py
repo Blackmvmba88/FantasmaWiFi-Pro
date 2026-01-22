@@ -109,9 +109,10 @@ class FantasmaBenchmark:
             # Run ping command
             if self.platform == "Windows":
                 result = subprocess.run(
-                    ['ping', '-n', str(count), host],
+                    ['ping', '-n', str(count), '-w', '1000', host],
                     capture_output=True,
-                    text=True
+                    text=True,
+                    timeout=30
                 )
             else:
                 result = subprocess.run(

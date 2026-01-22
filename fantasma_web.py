@@ -293,8 +293,9 @@ def main():
     print(f"  → http://127.0.0.1:{args.port}")
     print("\nAPI Documentation:")
     print(f"  → http://localhost:{args.port}/api/docs")
-    print("\nDefault API Key (save this!):")
-    print(f"  → {api_auth.default_key}")
+    print("\n⚠️  IMPORTANT - Save your API key securely!")
+    print(f"  API Key: {api_auth.default_key}")
+    print("  (Store this in a secure location, not in code or logs)")
     print("\nPress Ctrl+C to stop the server")
     print("=" * 60)
     

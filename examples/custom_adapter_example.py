@@ -151,6 +151,8 @@ class RaspberryPiAdapter(PlatformAdapter):
     
     def _configure_dnsmasq(self, config: FantasmaConfig):
         """Configure dnsmasq for DHCP"""
+        import tempfile
+        
         # Create dnsmasq config
         dnsmasq_config = f"""
 # FantasmaWiFi-Pro dnsmasq configuration
@@ -160,19 +162,23 @@ dhcp-option=3,{config.gateway_ip}
 dhcp-option=6,8.8.8.8,8.8.4.4
 """
         
-        # Write config
-        with open('/tmp/fantasma_dnsmasq.conf', 'w') as f:
+        # Write config to secure temporary file
+        with tempfile.NamedTemporaryFile(mode='w', prefix='fantasma_dnsmasq_', 
+                                         suffix='.conf', delete=False) as f:
             f.write(dnsmasq_config)
+            config_path = f.name
         
         # Start dnsmasq
         subprocess.run([
             'dnsmasq',
-            '-C', '/tmp/fantasma_dnsmasq.conf',
+            '-C', config_path,
             '-k'  # Keep in foreground (or use -d for daemon)
         ], check=False)  # Don't fail if already running
     
     def _configure_hostapd(self, config: FantasmaConfig):
         """Configure hostapd for WiFi AP"""
+        import tempfile
+        
         # Create hostapd config
         hostapd_config = f"""
 # FantasmaWiFi-Pro hostapd configuration
@@ -191,14 +197,16 @@ wpa_pairwise=TKIP
 rsn_pairwise=CCMP
 """
         
-        # Write config
-        with open('/tmp/fantasma_hostapd.conf', 'w') as f:
+        # Write config to secure temporary file
+        with tempfile.NamedTemporaryFile(mode='w', prefix='fantasma_hostapd_', 
+                                         suffix='.conf', delete=False) as f:
             f.write(hostapd_config)
+            config_path = f.name
         
         # Start hostapd
         subprocess.Popen([
             'hostapd',
-            '/tmp/fantasma_hostapd.conf'
+            config_path
         ])
     
     def _enable_ip_forwarding(self):
@@ -270,9 +278,9 @@ rsn_pairwise=CCMP
         self.logger.info("Stopping Raspberry Pi sharing...")
         
         try:
-            # Kill dnsmasq and hostapd
-            subprocess.run(['killall', 'dnsmasq'], check=False)
-            subprocess.run(['killall', 'hostapd'], check=False)
+            # Kill dnsmasq and hostapd using pkill (more portable than killall)
+            subprocess.run(['pkill', '-f', 'dnsmasq'], check=False)
+            subprocess.run(['pkill', '-f', 'hostapd'], check=False)
             
             # Clear iptables
             subprocess.run(['iptables', '-t', 'nat', '-F'], check=False)
