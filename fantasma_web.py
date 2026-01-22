@@ -4,7 +4,7 @@ FantasmaWiFi-Pro Web UI Server
 Web-based control panel for managing WiFi sharing
 """
 
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, Response
 from flask_socketio import SocketIO, emit
 import threading
 import time
@@ -17,6 +17,8 @@ from fantasma_core import (
     NetworkMode,
     get_platform_adapter
 )
+from fantasma_api import api_auth, rate_limiter, require_api_key, rate_limit, optional_auth
+from fantasma_openapi import OPENAPI_SPEC, get_openapi_html
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -51,7 +53,22 @@ def index():
     return render_template('index.html')
 
 
+# API Documentation
+@app.route('/api/docs')
+def api_docs():
+    """Swagger UI for API documentation"""
+    return get_openapi_html()
+
+
+@app.route('/api/openapi.json')
+def openapi_spec():
+    """OpenAPI specification"""
+    return jsonify(OPENAPI_SPEC)
+
+
 @app.route('/api/interfaces', methods=['GET'])
+@optional_auth
+@rate_limit
 def get_interfaces():
     """Get available network interfaces"""
     if not fantasma:
@@ -77,6 +94,7 @@ def get_interfaces():
 
 
 @app.route('/api/status', methods=['GET'])
+@optional_auth
 def get_status():
     """Get current sharing status"""
     if not fantasma:
@@ -98,6 +116,8 @@ def get_status():
 
 
 @app.route('/api/start', methods=['POST'])
+@require_api_key
+@rate_limit
 def start_sharing():
     """Start WiFi sharing"""
     if not fantasma:
@@ -136,6 +156,8 @@ def start_sharing():
 
 
 @app.route('/api/stop', methods=['POST'])
+@require_api_key
+@rate_limit
 def stop_sharing():
     """Stop WiFi sharing"""
     if not fantasma:
@@ -157,12 +179,15 @@ def stop_sharing():
 
 
 @app.route('/api/profiles', methods=['GET'])
+@optional_auth
 def get_profiles():
     """Get saved configuration profiles"""
     return jsonify({'profiles': list(config_profiles.keys())})
 
 
 @app.route('/api/profiles', methods=['POST'])
+@require_api_key
+@rate_limit
 def save_profile():
     """Save a configuration profile"""
     try:
@@ -182,6 +207,7 @@ def save_profile():
 
 
 @app.route('/api/profiles/<name>', methods=['GET'])
+@optional_auth
 def get_profile(name):
     """Get a specific configuration profile"""
     if name in config_profiles:
@@ -191,6 +217,7 @@ def get_profile(name):
 
 
 @app.route('/api/profiles/<name>', methods=['DELETE'])
+@require_api_key
 def delete_profile(name):
     """Delete a configuration profile"""
     if name in config_profiles:
@@ -264,6 +291,11 @@ def main():
     print("\nAccess the control panel at:")
     print(f"  → http://localhost:{args.port}")
     print(f"  → http://127.0.0.1:{args.port}")
+    print("\nAPI Documentation:")
+    print(f"  → http://localhost:{args.port}/api/docs")
+    print("\n⚠️  IMPORTANT - Save your API key securely!")
+    print(f"  API Key: {api_auth.default_key}")
+    print("  (Store this in a secure location, not in code or logs)")
     print("\nPress Ctrl+C to stop the server")
     print("=" * 60)
     

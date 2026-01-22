@@ -93,6 +93,9 @@ See [WEB_UI_GUIDE.md](WEB_UI_GUIDE.md) for detailed Web UI documentation.
 - **[Web UI Guide](WEB_UI_GUIDE.md)** - Complete Web UI documentation
 - **[Complete README](README_NEW.md)** - Full CLI documentation with examples
 - **[Architecture Guide](ARCHITECTURE.md)** - Technical deep dive
+- **[Tutorials](TUTORIALS.md)** - Step-by-step guides for common use cases
+- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute to the project
+- **[API Documentation](#api-features)** - REST API for programmatic control
 - **Legacy Scripts** - Original bash scripts (`phantom_*.sh`) for macOS
 
 ---
@@ -136,13 +139,110 @@ Don't accept WiFi dead zones. Create your own infrastructure.
 
 - [x] **Phase 1-2**: macOS bash scripts (Completed)
 - [x] **Phase 3**: Multi-platform architecture (v7.0 - Completed)
-- [x] **Phase 4**: Web UI local control panel (v7.5 - Current) ✨
-- [ ] **Phase 5**: Advanced features (Q2 2026)
-  - Bandwidth monitoring
+- [x] **Phase 4**: Web UI local control panel (v7.5 - Completed) ✨
+- [x] **Phase 5**: API & Infrastructure (v7.5 - Current) 🚀
+  - REST API with authentication
+  - Rate limiting & throttling
+  - Plugin system for custom adapters
+  - PyPI packaging improvements
+  - Comprehensive tutorials
+  - Benchmarking tools
+  - Community documentation
+- [ ] **Phase 6**: Advanced features (Q2 2026)
+  - Bandwidth monitoring dashboard
   - Connected devices management
   - Advanced firewall rules
   - VPN integration
-- [ ] **Phase 6**: Commercialization (Q3 2026)
+  - Multi-target support
+- [ ] **Phase 7**: Ecosystem (Q3 2026)
+  - Community adapter registry
+  - Configuration marketplace
+  - Advanced metrics & analytics
+
+---
+
+## 🚀 API Features
+
+FantasmaWiFi-Pro now includes a comprehensive REST API for programmatic control:
+
+### Quick Start
+
+```python
+import requests
+
+# Get available interfaces
+response = requests.get(
+    "http://localhost:8080/api/interfaces",
+    headers={"X-API-Key": "your_api_key"}
+)
+
+# Start sharing
+config = {
+    "source": "en0",
+    "target": "en1",
+    "mode": "hotspot",
+    "ssid": "MyHotspot",
+    "password": "SecurePass123"
+}
+response = requests.post(
+    "http://localhost:8080/api/start",
+    json=config,
+    headers={"X-API-Key": "your_api_key"}
+)
+```
+
+### Features
+
+- ✅ **REST API** - Full control via HTTP endpoints
+- ✅ **Authentication** - API key-based security
+- ✅ **Rate Limiting** - 60 requests/minute per key
+- ✅ **Profile Management** - Save and load configurations
+- ✅ **WebSocket** - Real-time status updates
+
+See [TUTORIALS.md](TUTORIALS.md#api-integration) for complete API documentation.
+
+---
+
+## 🔌 Plugin System
+
+Extend FantasmaWiFi-Pro with custom platform adapters:
+
+```python
+from fantasma_plugins import register_adapter
+from fantasma_core import PlatformAdapter
+
+@register_adapter('my_platform')
+class MyPlatformAdapter(PlatformAdapter):
+    def detect_interfaces(self):
+        # Your implementation
+        pass
+    
+    def start_hotspot(self, config):
+        # Your implementation
+        pass
+```
+
+See [examples/custom_adapter_example.py](examples/custom_adapter_example.py) for complete example.
+
+---
+
+## 📊 Benchmarking
+
+Measure performance with built-in benchmarking tools:
+
+```bash
+# Run benchmark
+python fantasma_benchmark.py
+
+# Compare modes
+python fantasma_benchmark.py --compare
+```
+
+Measures:
+- Startup time
+- Network throughput
+- Latency
+- CPU and memory usage
 
 ---
 
