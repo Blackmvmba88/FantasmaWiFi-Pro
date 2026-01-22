@@ -137,27 +137,36 @@ Don't accept WiFi dead zones. Create your own infrastructure.
 
 ## 🗺️ Roadmap
 
+See **[ROADMAP_2026.md](ROADMAP_2026.md)** for the complete 2026 strategic roadmap.
+
+### Completed Phases
 - [x] **Phase 1-2**: macOS bash scripts (Completed)
 - [x] **Phase 3**: Multi-platform architecture (v7.0 - Completed)
 - [x] **Phase 4**: Web UI local control panel (v7.5 - Completed) ✨
-- [x] **Phase 5**: API & Infrastructure (v7.5 - Current) 🚀
-  - REST API with authentication
-  - Rate limiting & throttling
-  - Plugin system for custom adapters
-  - PyPI packaging improvements
-  - Comprehensive tutorials
-  - Benchmarking tools
-  - Community documentation
-- [ ] **Phase 6**: Advanced features (Q2 2026)
-  - Bandwidth monitoring dashboard
-  - Connected devices management
-  - Advanced firewall rules
-  - VPN integration
-  - Multi-target support
-- [ ] **Phase 7**: Ecosystem (Q3 2026)
+- [x] **Phase 5**: API & Infrastructure (v7.5 - Completed) 🚀
+
+### 2026 Vision: "Q1 is usable. Q2 is visible. Q3 is extensible. Q4 is inevitable."
+
+- [x] **Q1 2026**: Zero Friction Product 🚧
+  - `fantasma doctor` diagnostic tool
+  - Windows/macOS installers
+  - Enhanced web UI onboarding
+  - Safe defaults and permission handling
+  
+- [ ] **Q2 2026**: Narrative + Community 📅
+  - Packaged use cases with tutorials
+  - Demo video and landing page
+  - Community building and outreach
+  
+- [ ] **Q3 2026**: Ecosystem 📅
+  - Formal public API with SDKs
+  - Official reference plugins
   - Community adapter registry
-  - Configuration marketplace
-  - Advanced metrics & analytics
+  
+- [ ] **Q4 2026**: External Integrations 📅
+  - Infrastructure as Code (Ansible, Docker, Nix)
+  - Hardware platform support (Raspberry Pi, NanoPi)
+  - Educational institution partnerships
 
 ---
 

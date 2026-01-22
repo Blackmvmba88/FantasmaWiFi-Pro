@@ -167,6 +167,9 @@ Examples:
   # List interfaces
   %(prog)s list
   
+  # Run system diagnostics
+  %(prog)s doctor
+  
   # Start hotspot mode (macOS USB sharing)
   %(prog)s start -s en0 -t en5 --ssid MyHotspot --password MyPassword123
   
@@ -187,7 +190,7 @@ Modes:
     
     parser.add_argument(
         'command',
-        choices=['list', 'start', 'stop', 'status'],
+        choices=['list', 'start', 'stop', 'status', 'doctor'],
         help='Command to execute'
     )
     
@@ -242,6 +245,13 @@ Modes:
     try:
         if args.command == 'list':
             cli.list_interfaces()
+        elif args.command == 'doctor':
+            # Run doctor diagnostics
+            from fantasma_doctor import FantasmaDoctor
+            doctor = FantasmaDoctor(verbose=args.verbose, no_color=False)
+            report = doctor.generate_report()
+            doctor.print_report(report)
+            sys.exit(0 if report.overall_status.name == 'PASS' else 1)
         elif args.command == 'start':
             if not args.source or not args.target:
                 print(f"{cli.RED}Error: --source and --target are required for start command{cli.NC}")

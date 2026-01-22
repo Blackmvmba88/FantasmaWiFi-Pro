@@ -54,6 +54,7 @@ setup(
         "console_scripts": [
             "fantasma=fantasma_cli:main",
             "fantasma-web=fantasma_web:main",
+            "fantasma-doctor=fantasma_doctor:main",
         ],
     },
 )
