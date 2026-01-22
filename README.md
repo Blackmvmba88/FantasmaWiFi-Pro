@@ -7,7 +7,30 @@
 
 ---
 
-## 🚀 What's New in v7.5
+## 🚀 What's New in v7.6 (Q1 2026)
+
+### Zero Friction Installation 📦
+- ✅ **One-Line Install** - `pip install fantasmawifi-pro`
+- ✅ **Platform Installers** - Native installers for Windows, macOS, and Termux
+- ✅ **System Diagnostics** - `fantasma doctor` command validates your setup
+- ✅ **Guided Setup** - Clear instructions and automated dependency checks
+
+### Diagnostic Tool 🩺
+- ✅ **Smart Detection** - Automatically identifies platform and capabilities
+- ✅ **Dependency Checks** - Verifies all required system tools
+- ✅ **Fix Suggestions** - Provides actionable solutions for issues
+- ✅ **JSON Output** - Scriptable diagnostics for automation
+
+### Strategic Roadmap 🗺️
+- ✅ **2026 Vision** - Clear quarterly objectives defined
+- ✅ **Community Ready** - Documentation for contributors
+- ✅ **Plugin Ecosystem** - Foundation for extensibility
+
+See [ROADMAP_2026.md](ROADMAP_2026.md) for the complete strategic plan.
+
+---
+
+## 🌟 Previous Features (v7.5)
 
 ### Web UI Control Panel 🌐
 - ✅ **Browser-Based Interface** - Modern, intuitive web dashboard
