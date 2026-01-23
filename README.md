@@ -7,7 +7,30 @@
 
 ---
 
-## 🚀 What's New in v7.5
+## 🚀 What's New in v7.6 (Q1 2026)
+
+### Zero Friction Installation 📦
+- ✅ **One-Line Install** - `pip install fantasmawifi-pro`
+- ✅ **Platform Installers** - Native installers for Windows, macOS, and Termux
+- ✅ **System Diagnostics** - `fantasma doctor` command validates your setup
+- ✅ **Guided Setup** - Clear instructions and automated dependency checks
+
+### Diagnostic Tool 🩺
+- ✅ **Smart Detection** - Automatically identifies platform and capabilities
+- ✅ **Dependency Checks** - Verifies all required system tools
+- ✅ **Fix Suggestions** - Provides actionable solutions for issues
+- ✅ **JSON Output** - Scriptable diagnostics for automation
+
+### Strategic Roadmap 🗺️
+- ✅ **2026 Vision** - Clear quarterly objectives defined
+- ✅ **Community Ready** - Documentation for contributors
+- ✅ **Plugin Ecosystem** - Foundation for extensibility
+
+See [ROADMAP_2026.md](ROADMAP_2026.md) for the complete strategic plan.
+
+---
+
+## 🌟 Previous Features (v7.5)
 
 ### Web UI Control Panel 🌐
 - ✅ **Browser-Based Interface** - Modern, intuitive web dashboard
@@ -45,15 +68,48 @@
 ## 📦 Quick Start
 
 ### Installation
+
+See **[INSTALLATION.md](INSTALLATION.md)** for complete installation instructions for all platforms.
+
+**Quick Install (PyPI):**
+```bash
+# Linux/macOS/Termux
+pip install fantasmawifi-pro
+
+# Windows (run as Administrator)
+pip install fantasmawifi-pro
+```
+
+**Platform-Specific Installers:**
+- **Windows**: Run `install_windows.ps1` (PowerShell as Administrator)
+- **macOS**: Run `./install_macos.sh`
+- **Termux/Android**: Run `./install_termux.sh`
+
+**From Source:**
 ```bash
 git clone https://github.com/Blackmvmba88/FantasmaWiFi-Pro.git
 cd FantasmaWiFi-Pro
 chmod +x fantasma_cli.py start_web_ui.sh
 ```
 
+### System Check
+
+Run diagnostics to verify your system:
+```bash
+fantasma doctor
+```
+
+This will check:
+- Platform compatibility
+- Network interfaces
+- Required dependencies
+- System capabilities
+
 ### Web UI (Recommended for Most Users)
 ```bash
 # Start the web interface
+fantasma-web
+# or from source:
 ./start_web_ui.sh
 
 # Access in your browser
@@ -70,26 +126,31 @@ See [WEB_UI_GUIDE.md](WEB_UI_GUIDE.md) for detailed Web UI documentation.
 
 ### CLI (For Power Users & Automation)
 ```bash
+# Run system diagnostics
+fantasma doctor
+
 # List interfaces
-./fantasma_cli.py list
+fantasma list
 
 # Start hotspot (WiFi)
-./fantasma_cli.py start -s en0 -t wlan1 --ssid MyWiFi --password SecurePass123
+sudo fantasma start -s eth0 -t wlan0 --ssid MyWiFi --password SecurePass123
 
 # Start bridge mode
-./fantasma_cli.py start -s en0 -t en1 --bridge
+sudo fantasma start -s eth0 -t eth1 --bridge
 
 # Stop sharing
-./fantasma_cli.py stop
+sudo fantasma stop
 
 # Check status
-./fantasma_cli.py status
+fantasma status
 ```
 
 ---
 
 ## 📚 Documentation
 
+- **[Installation Guide](INSTALLATION.md)** - Complete installation instructions for all platforms
+- **[Doctor Guide](DOCTOR_GUIDE.md)** - System diagnostics and troubleshooting
 - **[Web UI Guide](WEB_UI_GUIDE.md)** - Complete Web UI documentation
 - **[Complete README](README_NEW.md)** - Full CLI documentation with examples
 - **[Architecture Guide](ARCHITECTURE.md)** - Technical deep dive
@@ -137,27 +198,36 @@ Don't accept WiFi dead zones. Create your own infrastructure.
 
 ## 🗺️ Roadmap
 
+See **[ROADMAP_2026.md](ROADMAP_2026.md)** for the complete 2026 strategic roadmap.
+
+### Completed Phases
 - [x] **Phase 1-2**: macOS bash scripts (Completed)
 - [x] **Phase 3**: Multi-platform architecture (v7.0 - Completed)
 - [x] **Phase 4**: Web UI local control panel (v7.5 - Completed) ✨
-- [x] **Phase 5**: API & Infrastructure (v7.5 - Current) 🚀
-  - REST API with authentication
-  - Rate limiting & throttling
-  - Plugin system for custom adapters
-  - PyPI packaging improvements
-  - Comprehensive tutorials
-  - Benchmarking tools
-  - Community documentation
-- [ ] **Phase 6**: Advanced features (Q2 2026)
-  - Bandwidth monitoring dashboard
-  - Connected devices management
-  - Advanced firewall rules
-  - VPN integration
-  - Multi-target support
-- [ ] **Phase 7**: Ecosystem (Q3 2026)
+- [x] **Phase 5**: API & Infrastructure (v7.5 - Completed) 🚀
+
+### 2026 Vision: "Q1 is usable. Q2 is visible. Q3 is extensible. Q4 is inevitable."
+
+- [x] **Q1 2026**: Zero Friction Product 🚧
+  - `fantasma doctor` diagnostic tool
+  - Windows/macOS installers
+  - Enhanced web UI onboarding
+  - Safe defaults and permission handling
+  
+- [ ] **Q2 2026**: Narrative + Community 📅
+  - Packaged use cases with tutorials
+  - Demo video and landing page
+  - Community building and outreach
+  
+- [ ] **Q3 2026**: Ecosystem 📅
+  - Formal public API with SDKs
+  - Official reference plugins
   - Community adapter registry
-  - Configuration marketplace
-  - Advanced metrics & analytics
+  
+- [ ] **Q4 2026**: External Integrations 📅
+  - Infrastructure as Code (Ansible, Docker, Nix)
+  - Hardware platform support (Raspberry Pi, NanoPi)
+  - Educational institution partnerships
 
 ---
 
